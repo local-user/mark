@@ -1,0 +1,92 @@
+#!/bin/bash
+#
+#   [mark]
+#
+
+
+
+
+    # global(s)
+    config="$HOME/.config/mark"
+    script="$0"
+    script_name=$( basename $0 )
+
+
+
+    # | display
+
+        function display() {
+            echo "$script_name: $@"
+        }
+
+        function display_error() {
+            echo "$script_name error: $@"
+        }
+
+    # display |
+
+
+    # | feature(s)
+
+        function history() {
+            [ -e "$config/history" ] && cat "$config/history"
+        }
+
+        function mark() {
+            path=$( pwd )
+            display "+ $path"
+            echo "$path" >> "$config/history"
+        }
+
+        function latest() {
+            [ -e "$config/history" ] && tail -1 "$config/history"
+        }
+
+        function reset() {
+            display "<> reset"
+            [ -e "$config/history" ] && rm "$config/history"
+        }
+
+    # feature(s) | #
+
+
+    # | utility(s)
+
+        function utility_set_config() {
+            command -v xdg-user-dir >/dev/null 2>&1
+            if [ $? -eq 0 ]; then
+                config="`xdg-user-dir CONFIG`/mark"
+            else
+                config="$HOME/.config/mark"
+            fi
+            mkdir -p "$config"
+        }
+
+    # utility(s) |
+
+
+
+
+    # | main
+
+        # set - config
+        utility_set_config
+
+        # ? - no arg(s) - mark
+        [ $# -eq 0 ] && mark && exit 0
+
+        # switch - $1
+        case "$1" in
+            -h|--history)   history "$@"
+                            ;;
+            -l|--latest)    latest "$@"
+                            ;;
+            -r|--reset)     reset "$@"
+                            ;;
+        esac
+
+    # main |
+
+
+
+
