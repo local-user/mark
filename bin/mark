@@ -9,14 +9,14 @@
     # global(s)
     config="$HOME/.config/mark"
     script="$0"
-    script_name=$( basename $0 )
+
 
 
 
     # | display
 
         function display() {
-            echo "$script_name $@"
+            echo "$@"
         }
 
     # display |
@@ -30,7 +30,7 @@
 
         function mark() {
             path=$( pwd )
-            display "+ $path"
+            display " + $path"
             echo "$path" >> "$config/history"
         }
 
@@ -39,7 +39,7 @@
         }
 
         function reset() {
-            display "<> reset"
+            display " ! reset"
             [ -e "$config/history" ] && rm "$config/history"
         }
 
@@ -52,8 +52,6 @@
             command -v xdg-user-dir >/dev/null 2>&1
             if [ $? -eq 0 ]; then
                 config="`xdg-user-dir CONFIG`/mark"
-            else
-                config="$HOME/.config/mark"
             fi
             mkdir -p "$config"
         }
