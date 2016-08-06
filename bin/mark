@@ -30,7 +30,7 @@
 
         function mark() {
             path=$( pwd )
-            display " + $path"
+            display "+ $path"
             echo "$path" >> "$config/history"
         }
 
@@ -39,7 +39,7 @@
         }
 
         function reset() {
-            display " ! reset"
+            display "! reset"
             [ -e "$config/history" ] && rm "$config/history"
         }
 
