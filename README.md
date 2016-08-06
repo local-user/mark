@@ -6,9 +6,11 @@ A tool for marking/tracking directories.
 - `cd mark.git`
 - `bin/mark`
 
-##installation - extra
+##extra
 Add the following line to '.bashrc' to change directory on launch to `mark --latest`
 - `hash mark 2>/dev/null && [ ! -z "$(mark --latest)" ] && cd "$(mark --latest)"`
+Note the above assumes 'mark' exists in your PATH
+
 
 ##usage
 - `mark`
