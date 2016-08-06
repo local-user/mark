@@ -8,7 +8,7 @@ A tool for marking/tracking directories.
 
 ##installation - extra
 Add the following line to '.bashrc' to change directory on launch to `mark --latest`
-- `hash mark 2>/dev/null && [ ! -z "$(mark --latest)" ] && cd $(mark --latest)`
+- `hash mark 2>/dev/null && [ ! -z "$(mark --latest)" ] && cd "$(mark --latest)"`
 
 ##usage
 - `mark`
