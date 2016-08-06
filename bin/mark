@@ -16,11 +16,7 @@
     # | display
 
         function display() {
-            echo "$script_name: $@"
-        }
-
-        function display_error() {
-            echo "$script_name error: $@"
+            echo "$script_name $@"
         }
 
     # display |
