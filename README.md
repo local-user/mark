@@ -13,5 +13,5 @@ Add the following line to '.bashrc' to change directory on launch to `mark --lat
 ##usage
 - `mark`
 - `mark --history`
-- `mark --history 2`
 - `mark --latest`
+- `mark --reset`
