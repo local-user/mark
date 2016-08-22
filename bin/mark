@@ -38,6 +38,15 @@
             [ -e "$config/history" ] && tail -1 "$config/history"
         }
 
+        function latest_cd() {
+            if [ -e "$config/history" ]; then
+                path=$( tail -1 "$config/history" );
+            else
+                path="$HOME"
+            fi
+            cd "$path"
+        } # note: requires [ . mark ] not [ ./mark ]
+
         function reset() {
             display "! reset"
             [ -e "$config/history" ] && rm "$config/history"
@@ -71,12 +80,14 @@
 
         # switch - $1
         case "$1" in
-            -h|--history)   history "$@"
-                            ;;
-            -l|--latest)    latest "$@"
-                            ;;
-            -r|--reset)     reset "$@"
-                            ;;
+            -h|--history)       history "$@"
+                                ;;
+            -l|--latest)        latest "$@"
+                                ;;
+            -lcd|--latest-cd)   latest_cd "$@"
+                                ;;
+            -r|--reset)         reset "$@"
+                                ;;
         esac
 
     # main |
