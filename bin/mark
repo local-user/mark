@@ -35,7 +35,11 @@
         }
 
         function latest() {
-            [ -e "$config/history" ] && tail -1 "$config/history"
+            if [ -e "$config/history" ]; then
+                tail -1 "$config/history"
+            else
+                pwd
+            fi
         }
 
         function reset() {
